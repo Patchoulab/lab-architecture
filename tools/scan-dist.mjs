@@ -170,7 +170,6 @@ function walk(dir) {
 function decodeEntities(text) {
   return text
     .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
@@ -194,7 +193,9 @@ function decodeEntities(text) {
     // apart, and the browser renders them identically.
     .replace(/&#(\d+);?/g, (_, d) => String.fromCharCode(Number(d)))
     .replace(/&#x([0-9a-f]+);?/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
-        .replace(/\s+/g, " ");
+    // Unescape '&' LAST to avoid double-unescaping sequences like '&amp;lt;'.
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ");
 }
 
 function renderedText(html, sep = " ") {
