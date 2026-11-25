@@ -44,7 +44,7 @@ repository reads anything from the lab.
 
 ## Running it locally
 
-Node **22.12.0** (see `.nvmrc`). One command per line; nothing here needs
+Node **22.23.5** (see `.nvmrc`). One command per line; nothing here needs
 chaining.
 
 ```sh
